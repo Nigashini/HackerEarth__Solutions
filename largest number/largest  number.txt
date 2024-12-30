@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char number[100];
+    int k;
+
+    scanf("%s %d", number, &k);
+
+    int n = strlen(number);     
+    int newLength = n - k;       
+    char result[100];            
+    int top = -1;                
+
+    for (int i = 0; i < n; i++) {
+        while (top >= 0 && result[top] < number[i] && k > 0) {
+            top--;  
+            k--;   
+        }
+        if (top + 1 < newLength) {
+            result[++top] = number[i];  
+        } else {
+            k--;  
+        }
+    }
+
+    result[newLength] = '\0';  
+    printf("%s\n", result);
+
+    return 0;
+}
